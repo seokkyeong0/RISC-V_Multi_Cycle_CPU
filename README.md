@@ -60,7 +60,7 @@ Successfully verified basic RV32I instruction set operations.
 - **Peripherals used:** UART, GPIO, TIMER, FND  
 
 ### Prime Number Discriminator
-- Receives up to 4-digit numbers via UART → combines digits → checks primality → displays result on FND  
+- Receives up to 4-digit numbers via UART → combines digits → checks primality → displays result on FND and UART Terminal
 - **Peripherals used:** UART, GPIO, FND  
 
 ---
