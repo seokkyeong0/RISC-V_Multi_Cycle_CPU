@@ -1,4 +1,4 @@
-# 🧠 RISC-V RV32I Multicycle CPU + APB Peripherals
+# RISC-V RV32I Multicycle CPU + APB Peripherals
 
 ## 📌 Project Overview
 **Objective:**  
