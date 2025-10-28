@@ -55,7 +55,7 @@ Successfully verified basic RV32I instruction set operations.
 
 ## 💻 Application Examples
 ### Note
-- Reserve a stack pointer of 0x10001000 for RAM. (li sp, 0x10001000)
+- First, reserve a stack pointer of 0x10001000 for RAM. (li sp, 0x10001000)
 
 ### LED Blink Cycle Controller
 - Adjusts LED blinking interval based on UART input  
