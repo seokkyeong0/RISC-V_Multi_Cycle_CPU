@@ -1,118 +1,110 @@
-RISC-V RV32I Multicycle CPU + APB Peripherals
-Project Overview
+# 🧠 RISC-V RV32I Multicycle CPU + APB Peripherals
 
-Objective:
+## 📌 Project Overview
+**Objective:**  
 Design a RISC-V–based multicycle CPU and integrate AMBA APB peripherals.
 
-Key Features:
+**Key Features:**
+- Multicycle CPU Core implementation (RV32I ISA)
+- AMBA APB bus design with multiple peripherals (GPIO, UART, TIMER, FND)
+- MCU applications simulated using UART communication
 
-Implemented a Multicycle CPU Core (RV32I ISA)
-
-Designed the AMBA APB bus and connected multiple peripherals (GPIO, UART, TIMER, FND)
-
-Developed and simulated MCU applications using UART communication
-
-Development Environment:
+**Development Environment:**  
 SystemVerilog, Vivado, C, RISC-V, Assembly
 
-CPU Design
+---
 
-Architecture:
-IF → ID → EX → MEM → WB (5-stage multicycle pipeline)
+## ⚙️ CPU Design
 
-Highlights:
+**Architecture:**  
+`IF → ID → EX → MEM → WB` (5-stage multicycle pipeline)
 
-Improved timing slack compared to single-cycle CPU
+**Highlights:**
+- Improved timing slack compared to single-cycle CPU
+- Supports Load/Store Word instructions only (LB/LH temporarily excluded for simplicity)
 
-Supported Load/Store Word instructions only (LB/LH temporarily excluded for logic simplicity)
-
-Result:
+**Result:**  
 Successfully verified basic RV32I instruction set operations.
 
-AMBA APB Bus & MCU Architecture
+---
 
-System Structure:
-ROM → CPU Core → APB Bus → Peripherals
+## 🔗 AMBA APB Bus & MCU Architecture
 
-Peripheral Address Map:
+**System Structure:**  
+**Peripheral Address Map:**
 
-Peripheral	Address Range	Function
-RAM	0x10000000 ~ 0x10000FFF	Data memory
-GPIO	0x10001000 ~ 0x10001FFF	LED / Switch control
-UART	0x10002000 ~ 0x10002FFF	Serial communication
-TIMER	0x10003000 ~ 0x10003FFF	Timer control
-FND	0x10004000 ~ 0x10004FFF	7-segment display output
-Peripheral Design
+| Peripheral | Address Range           | Function                     |
+|------------|------------------------|-------------------------------|
+| RAM        | 0x10000000 ~ 0x10000FFF | Data memory                  |
+| GPIO       | 0x10001000 ~ 0x10001FFF | LED / Switch control         |
+| UART       | 0x10002000 ~ 0x10002FFF | Serial communication         |
+| TIMER      | 0x10003000 ~ 0x10003FFF | Timer control                |
+| FND        | 0x10004000 ~ 0x10004FFF | 7-segment display output     |
 
-GPIO: Controls 16 LEDs and switches
+---
 
-UART: Implemented RX/TX FIFO-based communication
+## 🧩 Peripheral Design
 
-TIMER: Supports periodic signal generation using interrupt-based control
+- **GPIO:** Controls 16 LEDs and switches  
+- **UART:** RX/TX FIFO-based serial communication  
+- **TIMER:** Periodic signal generation with interrupt control  
+- **FND:** Four-digit 7-segment display driver  
 
-FND: Four-digit 7-segment display driver
+---
 
-Application Examples
-LED Blink Cycle Controller
+## 💻 Application Examples
 
-Adjusts LED blinking interval based on UART input.
+### 1️⃣ LED Blink Cycle Controller
+- Adjusts LED blinking interval based on UART input  
+- **Peripherals used:** UART, GPIO, TIMER, FND  
 
-Used Peripherals: UART + GPIO + TIMER + FND
+### 2️⃣ Prime Number Discriminator
+- Receives up to 4-digit numbers via UART → combines digits → checks primality → displays result on FND  
+- **Peripherals used:** UART, GPIO, FND  
 
-Prime Number Discriminator
+---
 
-Receives up to 4-digit numbers through UART → combines digits → performs prime number check → displays result on FND.
+## 🧪 UART Verification
 
-Used Peripherals: UART + GPIO + FND
+**Method:** UVM-lite–based Loopback Test  
 
-UART Verification
+**Verification Components:**
+- **Generator:** Creates and sends random 8-bit data  
+- **Driver:** Generates and transmits RX patterns  
+- **Monitor:** Detects TX patterns and logs output  
+- **Scoreboard:** Compares transmitted and received data  
 
-Method: UVM-lite–based Loopback Test
+**Result:** Correct operation confirmed via TCL console and waveform inspection.
 
-Verification Components:
+---
 
-Generator: Creates and sends random 8-bit data
+## ⚠️ Troubleshooting
 
-Driver: Generates and transmits RX patterns
+- **Signal Latching:**  
+  Short one-cycle signals (e.g., `rx_done`) required latching circuits for reliable detection
+- **Timing Report:**  
+  Divider module caused propagation delays → optimized clock timing
+- **RV32I Limitations:**  
+  MUL/DIV/MOD instructions missing → implemented equivalent operations in C code
 
-Monitor: Detects TX patterns and logs output
+---
 
-Scoreboard: Compares transmitted and received data
+## 🚀 Improvements & Conclusion
 
-Result: Correct operation confirmed through TCL console and waveform inspection.
+**Achievements:**
+- Gained deep understanding of MCU operation flow
+- Experience in custom peripheral design
 
-Troubleshooting
+**Future Enhancements:**
+- Add more complex peripheral modules
+- Expand verification scope using advanced UVM environments
 
-Signal Latching:
+---
 
-One-cycle signals such as rx_done were too short to detect → added latching circuit
+## 🙋‍♂️ Personal Contribution
 
-Timing Report:
+- Designed the CPU core and APB interface  
+- Built UART verification environment using UVM-lite  
+- Implemented peripheral register maps and application-level C code  
+- Diagnosed and optimized timing and signal integrity issues
 
-Divider module caused propagation delay issues → optimized clock timing
-
-RV32I Limitations:
-
-Lacks MUL/DIV/MOD instructions → implemented equivalent operations in C code
-
-Improvements & Conclusion
-
-Gained deeper understanding of MCU operation flow
-
-Accumulated experience in custom peripheral design
-
-Future Enhancements:
-
-Add more complex peripheral modules
-
-Expand verification scope using advanced UVM environments
-
-Personal Contribution
-
-Designed the CPU core and APB interface
-
-Built UART verification environment using UVM-lite
-
-Implemented peripheral register maps and application-level C code
-
-Diagnosed and optimized timing and signal integrity issues
