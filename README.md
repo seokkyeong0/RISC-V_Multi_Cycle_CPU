@@ -53,7 +53,7 @@ Successfully verified basic RV32I instruction set operations.
 
 ---
 
-## 💻 Application Examples
+## 💻 C Application Examples
 ### Note
 - First, reserve a stack pointer of 0x10001000 for RAM. (li sp, 0x10001000)
 
