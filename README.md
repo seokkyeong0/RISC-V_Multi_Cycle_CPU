@@ -18,6 +18,7 @@ SystemVerilog, Vivado, C, RISC-V, Assembly
 
 **Architecture:**  
 `IF → ID → EX → MEM → WB` (5-stage multicycle pipeline)
+To achieve this, DFFs are inserted into the datapath and the control unit is also implemented in FSM form.
 
 **Highlights:**
 - Improved timing slack compared to single-cycle CPU
