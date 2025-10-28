@@ -55,11 +55,11 @@ Successfully verified basic RV32I instruction set operations.
 
 ## 💻 Application Examples
 
-### 1️⃣ LED Blink Cycle Controller
+### LED Blink Cycle Controller
 - Adjusts LED blinking interval based on UART input  
 - **Peripherals used:** UART, GPIO, TIMER, FND  
 
-### 2️⃣ Prime Number Discriminator
+### Prime Number Discriminator
 - Receives up to 4-digit numbers via UART → combines digits → checks primality → displays result on FND  
 - **Peripherals used:** UART, GPIO, FND  
 
