@@ -67,20 +67,6 @@ Successfully verified basic RV32I instruction set operations.
 
 ---
 
-## 🧪 UART Verification
-
-**Method:** UVM-lite–based Loopback Test  
-
-**Verification Components:**
-- **Generator:** Creates and sends random 8-bit data  
-- **Driver:** Generates and transmits RX patterns  
-- **Monitor:** Detects TX patterns and logs output  
-- **Scoreboard:** Compares transmitted and received data  
-
-**Result:** Correct operation confirmed via TCL console and waveform inspection.
-
----
-
 ## ⚠️ Troubleshooting
 
 - **Signal Latching:**  
